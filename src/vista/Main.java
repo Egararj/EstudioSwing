@@ -9,7 +9,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("Hola mundo desde swing");
-		FrmPrueba_0 formu = new FrmPrueba_0();
+		//FrmPrueba_0 formu = new FrmPrueba_0();
+		//FrmPrueba_1 formu = new FrmPrueba_1();
+		//FrmEstudioBoton fboton = new FrmEstudioBoton();
+		//FrmEstudioEtiqueta fetiqueta = new FrmEstudioEtiqueta();
+		//FrmEstudioCampoTexto fcampo = new FrmEstudioCampoTexto();
+		FrmTablasMultiplicar ftablas = new FrmTablasMultiplicar();
+
 	}
 
 }
