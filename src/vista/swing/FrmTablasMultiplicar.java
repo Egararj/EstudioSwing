@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class FrmTablasMultiplicar extends JFrame {
@@ -18,38 +19,11 @@ public class FrmTablasMultiplicar extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
 	private JPanel panel_tablas;
-	private JButton btnTabla1;
-	private JButton btnTabla2;
-	private JButton btnTabla3;
-	private JButton btnTabla4;
-	private JButton btnTabla5;
-	private JButton btnTabla6;
-	private JButton btnTabla7;
-	private JButton btnTabla8;
-	private JButton btnTabla9;
-	private JLabel lblInfoTabla;
-	private JLabel lblx1;
-	private JTextField textx1;
-	private JLabel lblx2;
-	private JTextField textx2;
-	private JLabel lblx3;
-	private JTextField textx3;
-	private JLabel lblx4;
-	private JTextField textx4;
-	private JLabel lblx5;
-	private JTextField textx5;
-	private JTextField textx6;
-	private JLabel lblx6;
-	private JTextField textx7;
-	private JLabel lblx7;
-	private JTextField textx8;
-	private JLabel lblx8;
-	private JTextField textx9;
-	private JLabel lblx9;
-	private JTextField textx10;
-	private JLabel lblx10;
-	private JButton btnCorregir;
-	
+	private JButton btnTabla1,btnTabla2,btnTabla3,btnTabla4,btnTabla5,btnTabla6,btnTabla7,btnTabla8,btnTabla9,btnCorregir;
+	private JLabel lblInfoTabla,lblx1,lblx2,lblx3,lblx4,lblx5,lblx6,lblx7,lblx8,lblx9,lblx10;
+	private JTextField textx1,textx2,textx3,textx4,textx5,textx6,textx7,textx8,textx9,textx10;
+	private ArrayList<String> cuadroTexto = new ArrayList<>();
+	private ArrayList<JTextField> cuadroTextoEstatico = new ArrayList<>();
 	private int num = 0;
 
 
@@ -64,14 +38,66 @@ public class FrmTablasMultiplicar extends JFrame {
 		
 		
 		definirVentana();
+		definirListaEstatica();
 		definirEventos();
 		this.setVisible(true);
 	}
 	
+	
+
+	private void limpiarCampos() {
+		JTextField recuadroTexto = textx1;
+		for(int x=0; x<10; x++) {
+			recuadroTexto = cuadroTextoEstatico.get(x);
+			recuadroTexto.setText("");
+			recuadroTexto.setBackground(Color.WHITE);
+		}
+	}
+	private void definirListaEstatica() {
+		
+		cuadroTextoEstatico.add(0,textx1);
+		cuadroTextoEstatico.add(1,textx2);
+		cuadroTextoEstatico.add(2,textx3);
+		cuadroTextoEstatico.add(3,textx4);
+		cuadroTextoEstatico.add(4,textx5);
+		cuadroTextoEstatico.add(5,textx6);
+		cuadroTextoEstatico.add(6,textx7);
+		cuadroTextoEstatico.add(7,textx8);
+		cuadroTextoEstatico.add(8,textx9);
+		cuadroTextoEstatico.add(9,textx10);
+	}
+	
+	private void definirLista() {
+		
+		cuadroTexto.add(0,textx1.getText());
+		cuadroTexto.add(1,textx2.getText());
+		cuadroTexto.add(2,textx3.getText());
+		cuadroTexto.add(3,textx4.getText());
+		cuadroTexto.add(4,textx5.getText());
+		cuadroTexto.add(5,textx6.getText());
+		cuadroTexto.add(6,textx7.getText());
+		cuadroTexto.add(7,textx8.getText());
+		cuadroTexto.add(8,textx9.getText());
+		cuadroTexto.add(9,textx10.getText());	
+	}
+
 	private void correcion(int num) {
 		int numPrueba = 0;
-		for(int x=1; x<=10; x++) {
-			
+		JTextField recuadroTexto = textx1;
+		for(int x=0; x<10; x++) {
+			try {
+				recuadroTexto = cuadroTextoEstatico.get(x);
+				numPrueba = Integer.parseInt(cuadroTexto.get(x));				
+				if(num*(x+1) == numPrueba) {
+					recuadroTexto.setBackground(Color.GREEN);
+				}else {
+					recuadroTexto.setText("");
+					recuadroTexto.setBackground(Color.RED);
+				}
+			}catch(Exception e) {
+				recuadroTexto.setText("");
+				recuadroTexto.setBackground(Color.RED);
+			}
 		}
 	}
 
@@ -81,16 +107,16 @@ public class FrmTablasMultiplicar extends JFrame {
 		num = numero;
 		
 		lblInfoTabla.setText("TABLA DEL "+numero);;
-		lblx1.setText(numero + "x 1 =");
-		lblx2.setText(numero + "x 1 =");
-		lblx3.setText(numero + "x 1 =");
-		lblx4.setText(numero + "x 1 =");
-		lblx5.setText(numero + "x 1 =");
-		lblx6.setText(numero + "x 1 =");
-		lblx7.setText(numero + "x 1 =");
-		lblx8.setText(numero + "x 1 =");
-		lblx9.setText(numero + "x 1 =");
-		lblx10.setText(numero + "x 1 =");
+		lblx1.setText(numero + " x 1 =");
+		lblx2.setText(numero + " x 2 =");
+		lblx3.setText(numero + " x 3 =");
+		lblx4.setText(numero + " x 4 =");
+		lblx5.setText(numero + " x 5 =");
+		lblx6.setText(numero + " x 6 =");
+		lblx7.setText(numero + " x 7 =");
+		lblx8.setText(numero + " x 8 =");
+		lblx9.setText(numero + " x 9 =");
+		lblx10.setText(numero + " x 10 =");
 
 	}
 
@@ -98,60 +124,70 @@ public class FrmTablasMultiplicar extends JFrame {
 	
 		btnTabla1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(1);
 			}
 		});
 		
 		btnTabla2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(2);
 			}
 		});
 		
 		btnTabla3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(3);
 			}
 		});
 		
 		btnTabla4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(4);
 			}
 		});
 		
 		btnTabla5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(5);
 			}
 		});
 		
 		btnTabla6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(6);
 			}
 		});
 		
 		btnTabla7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(7);
 			}
 		});
 		
 		btnTabla8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(8);
 			}
 		});
 		
 		btnTabla9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				limpiarCampos();
 				establecerTabla(9);
 			}
 		});
 		
 		btnCorregir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				definirLista();
 				correcion(num);
 			}
 		});
