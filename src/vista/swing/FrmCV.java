@@ -25,7 +25,7 @@ import java.awt.event.ActionEvent;
 public class FrmCV extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel panel,panel_datosPersonales,panel_estadoCivil,panel_lenguajesProgramacion,panel_SO,panel_masLenguajes;
+	private JPanel panel,panel_datosPersonales,panel_estadoCivil,panel_lenguajesProgramacion,panel_SO,panel_masLenguajes,panel2;
 	private JLabel lblCurriculumVitae, lblNombre,lblApellidos,lblDireccion,lblTelefono,lblPoblacion,lblExperienciaProfesional;
 	private JTextField textNombre,textApellidos,textDireccion,textTelefono;
 	private JComboBox comboPoblacion;
@@ -36,9 +36,10 @@ public class FrmCV extends JFrame {
 	private ArrayList<JCheckBox> listaLenguajes;
 	private JList listSO,listmasLenguajes;
 	private JScrollPane scrollPane_1;
-	private JTextArea textArea;
+	private JTextArea textAreaExperiencia, textAreaTotal;
 	private JButton btnAceptar;
 	private JFrame frame;
+	private String total = "";
 	
 	
 	public FrmCV() {
@@ -59,11 +60,65 @@ public class FrmCV extends JFrame {
 	private void definirEventos() {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				frame = new JFrame("Todas las opciones");
 				frame.setSize(400,500);
 				
+				panel2 = new JPanel();
+				panel2.setBorder(new EmptyBorder(5, 5, 5, 5));
+				frame.setContentPane(panel2);
+				panel2.setLayout(null);
+
 				
+				definirVentana2();
 				frame.setVisible(true);
+			}
+
+			private void definirVentana2() {
+				
+				textAreaTotal = new JTextArea();
+				textAreaTotal.setBounds(5, 5, 390, 490);
+				panel2.add(textAreaTotal);
+				
+				total += "Nombre: " + textNombre.getText() +"\n";
+				total += "Apellidos: " + textApellidos.getText() +"\n";
+				total += "Dirección: " + textDireccion.getText() +"\n";
+				total += "Teléfono: " + textTelefono.getText() +"\n";
+				total += "Población: " + comboPoblacion.getSelectedItem().toString() + "\n";
+				
+				for(JRadioButton radio:listaRadio) {
+					if(radio.isSelected()) {
+						total += "Estado civil: " + radio.getText() + "\n";
+					}
+				}
+				
+				JCheckBox check = new JCheckBox();
+				check = null;
+				total += "Lenguajes de programación: ";
+				for (int x=0; x<listaLenguajes.size(); x++) {
+					check = listaLenguajes.get(x);
+					if(check.isSelected()) {
+						total += check.getText() + " ";
+					}
+				}
+				total += "\n";
+				
+				total += "Más lenguajes: ";
+				Object[]seleccion = listmasLenguajes.getSelectedValues();
+				for(Object obj:seleccion) {
+					total += obj.toString() + " ";
+				}
+				total += "\n";
+				
+				total += "Sistemas operativos: ";
+				seleccion = listSO.getSelectedValues();
+				for(Object obj:seleccion) {
+					total += obj.toString() + " ";
+				}
+				total += "\n";
+				
+				total += textAreaExperiencia.getText();
+				textAreaTotal.setText(total);
 			}
 		});
 	}
@@ -171,7 +226,7 @@ public class FrmCV extends JFrame {
 		listaLenguajes.add(chcJava);listaLenguajes.add(chcDelphi);listaLenguajes.add(chcAndroid);
 		
 		panel_SO = new JPanel();
-		panel_SO.setBounds(333, 39, 109, 68);
+		panel_SO.setBounds(333, 39, 120, 68);
 		panel.add(panel_SO);
 		panel_SO.setLayout(new BorderLayout(0, 0));
 		JScrollPane scrollPane = new JScrollPane();
@@ -209,9 +264,9 @@ public class FrmCV extends JFrame {
 		});
 		scrollPane_1.setViewportView(listmasLenguajes);
 		
-		textArea = new JTextArea();
-		textArea.setBounds(492, 214, 198, 204);
-		panel.add(textArea);
+		textAreaExperiencia = new JTextArea();
+		textAreaExperiencia.setBounds(492, 214, 198, 204);
+		panel.add(textAreaExperiencia);
 		
 		lblExperienciaProfesional = new JLabel("Experiencia Profesional");
 		lblExperienciaProfesional.setBounds(492, 189, 142, 14);
