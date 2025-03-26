@@ -15,12 +15,11 @@ public class Main {
 		//FrmEstudioEtiqueta fetiqueta = new FrmEstudioEtiqueta();
 		//FrmEstudioCampoTexto fcampo = new FrmEstudioCampoTexto();
 		//FrmTablasMultiplicar ftablas = new FrmTablasMultiplicar();
-
 		//FrmTrabajoDeClase ftrabajo = new FrmTrabajoDeClase();
 		//FrmEstudioRadioButton fradio = new FrmEstudioRadioButton();
-
 		//FrmEstudioCheck fcheck = new FrmEstudioCheck();
-		FrmCombo fcombo = new FrmCombo();
+		//FrmCombo fcombo = new FrmCombo();
+		FrmCV fcv = new FrmCV();
 
 
 	}

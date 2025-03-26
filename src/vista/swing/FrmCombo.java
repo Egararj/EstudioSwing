@@ -63,6 +63,12 @@ public class FrmCombo extends JFrame {
 				lblMeses.setText(comboMeses.getSelectedItem().toString());
 			}
 		});
+		
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dc.addElement(textDia.getText().toString());
+			}
+		});
 	}
 
 
