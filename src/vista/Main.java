@@ -14,7 +14,9 @@ public class Main {
 		//FrmEstudioBoton fboton = new FrmEstudioBoton();
 		//FrmEstudioEtiqueta fetiqueta = new FrmEstudioEtiqueta();
 		//FrmEstudioCampoTexto fcampo = new FrmEstudioCampoTexto();
-		FrmTablasMultiplicar ftablas = new FrmTablasMultiplicar();
+		//FrmTablasMultiplicar ftablas = new FrmTablasMultiplicar();
+		//FrmTrabajoDeClase ftrabajo = new FrmTrabajoDeClase();
+		FrmEstudioRadioButton fradio = new FrmEstudioRadioButton();
 
 	}
 
